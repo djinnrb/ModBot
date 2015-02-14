@@ -351,6 +351,7 @@ namespace CoMaNdO.Gambling
 
                                             CreatePool(min, max, reward, lOptions);
                                             Chat.SendMessage("New Betting Pool opened! Min bet: " + MinBet + " " + Currency.Name + ", Max bet: " + MaxBet + " " + Currency.Name + ".");
+                                            /*
                                             string temp = "Betting open for: ";
                                             for (int i = 0; i < lOptions.Count; i++)
                                             {
@@ -360,6 +361,7 @@ namespace CoMaNdO.Gambling
                                                     temp += ", ";
                                                 }
                                             }
+                                            */
                                             Chat.SendMessage(temp + ".");
                                             Chat.SendMessage("Bet by typing \"!bet 50 #1\" to bet 50 " + Currency.Name + " on option 1, \"!bet 25 #2\" to bet 25 " + Currency.Name + " on option 2, etc.");
                                         }
@@ -402,9 +404,11 @@ namespace CoMaNdO.Gambling
                             Locked = true;
                             BetQueue.Change(0, Timeout.Infinite);
                             Chat.SendMessage("Bets locked in. Good luck everyone!");
+                           /*
                             string temp = "The following options were open for betting: ";
                             lock (Options) for (int i = 0; i < Options.Count; i++) temp += "(" + (i + 1).ToString() + ") " + Options[i] + " - " + getNumberOfBets(Options[i]) + " bets (" + getTotalBetsOn(Options[i]) + " " + Currency.Name + ")" + (i + 1 < Options.Count ? ", " : "");
                             Chat.SendMessage(temp + ".");
+                            */
                         }
                         else
                         {
@@ -460,6 +464,7 @@ namespace CoMaNdO.Gambling
                             {
                                 closePool(option);
                                 Chat.SendMessage("Betting Pool closed! A total of " + getTotalBets() + " " + Currency.Name + " were bet.");
+                                /*
                                 string output = "Bets for:";
                                 for (int i = 0; i < Options.Count; i++)
                                 {
@@ -467,6 +472,7 @@ namespace CoMaNdO.Gambling
                                     output += " " + Options[i] + " - " + getNumberOfBets(Options[i]) + " (" + Math.Round(x) + "%);";
                                     //Console.WriteLine("TESTING: getTotalBetsOn(" + i + ") = " + getTotalBetsOn(i) + " --- getTotalBets() = " + getTotalBets() + " ---  (double)betsOn(i)/totalBets() = " + (double)(getTotalBetsOn(i) / getTotalBets()) + " --- *100 = " + (double)(getTotalBetsOn(i) / getTotalBets()) * 100 + " --- Converted to a double = " + (double)((getTotalBetsOn(i) / getTotalBets()) * 100) + " --- Rounded double = " + Math.Round((double)((getTotalBetsOn(i) / getTotalBets()) * 100)));
                                 }
+                                */
                                 Chat.SendMessage(output);
                                 Dictionary<string, int> wins = Winners;
                                 output = "Winners:";
@@ -538,8 +544,8 @@ namespace CoMaNdO.Gambling
                         }
                         else
                         {
-                            string temp = "The pool is now closed, the following options were open for betting: ";
-                            lock (Options) for (int i = 0; i < Options.Count; i++) temp += "(" + (i + 1).ToString() + ") " + Options[i] + " - " + getNumberOfBets(Options[i]) + " bets (" + getTotalBetsOn(Options[i]) + " " + Currency.Name + ")" + (i + 1 < Options.Count ? ", " : "");
+                            string temp = "The pool is now closed.";
+                            //lock (Options) for (int i = 0; i < Options.Count; i++) temp += "(" + (i + 1).ToString() + ") " + Options[i] + " - " + getNumberOfBets(Options[i]) + " bets (" + getTotalBetsOn(Options[i]) + " " + Currency.Name + ")" + (i + 1 < Options.Count ? ", " : "");
                             Chat.SendMessage(temp + ".");
                         }
                     }
@@ -652,7 +658,7 @@ namespace CoMaNdO.Gambling
                     LastAnnouncedCost = Api.GetUnixTimeNow();
 
                     string temp = "Betting open for: ";
-                    lock (Options) for (int i = 0; i < Options.Count; i++) temp += "(" + (i + 1).ToString() + ") " + Options[i] + (i + 1 < Options.Count ? ", " : "");
+                   // lock (Options) for (int i = 0; i < Options.Count; i++) temp += "(" + (i + 1).ToString() + ") " + Options[i] + (i + 1 < Options.Count ? ", " : "");
                     Chat.SendMessage(temp + ".");
                     Chat.SendMessage("Min bet: " + MinBet + " " + Currency.Name + ", Max bet: " + MaxBet + " " + Currency.Name + ".");
                 }
